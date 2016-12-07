@@ -3,6 +3,7 @@ package com.feng.soundcontroller;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Timer;
 
 import android.media.AudioFormat;
 import android.media.AudioRecord;
@@ -19,6 +20,8 @@ public class SoundRecorder {
     AudioRecord mAudioRecord;
     boolean isGetVoiceRun;
     Object mLock;
+
+    Timer timer;
 
     static double dBValue = 60;
 
@@ -68,6 +71,7 @@ public class SoundRecorder {
                     Log.d(TAG, "dB value: " + volume);
 
                     if (volume > dBValue) {
+
                         Log.e(TAG, "dB value: " + volume);
                         if (firstClick) {
                             Log.i(TAG, "first click");
@@ -75,9 +79,19 @@ public class SoundRecorder {
                             firstClick = false;
                         }
 
-                        long currentTime = System.currentTimeMillis();
-                        Log.i(TAG, "currentTime：" + currentTime);
-                        queue.offer(currentTime);
+                        if (timer != null) {
+                            Log.i(TAG, "cancel previous timer");
+                            timer.cancel();
+                        }
+
+                        // long currentTime = System.currentTimeMillis();
+                        // Log.i(TAG, "currentTime：" + currentTime);
+                        // queue.offer(currentTime);
+
+                        timer = new Timer();
+                        timer.schedule(new MyTimerTask(), MyAccessibility.min
+                                * 60000);
+                        Log.i(TAG, "new timer");
                     }
 
                     // 大概一秒十次

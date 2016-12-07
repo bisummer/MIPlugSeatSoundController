@@ -23,9 +23,9 @@ public class MainActivity extends Activity {
         SoundRecorder recorder = new SoundRecorder();
         recorder.getNoiseLevel();
 
-        TimeQueueTask task = new TimeQueueTask();
-        Thread t = new Thread(task);
-        t.start();
+        // TimeQueueTask task = new TimeQueueTask();
+        // Thread t = new Thread(task);
+        // t.start();
 
     }
 
@@ -38,7 +38,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View arg0) {
                 SoundRecorder.dBValue = Double.parseDouble(db.getText().toString());
-                MyAccessibility.min = Double.parseDouble(time.getText().toString());
+                MyAccessibility.min = Long.parseLong(time.getText().toString());
             }
         });
 

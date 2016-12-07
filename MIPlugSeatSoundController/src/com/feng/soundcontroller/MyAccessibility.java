@@ -17,7 +17,7 @@ public class MyAccessibility extends AccessibilityService {
 
     private boolean isTimeout = true;
 
-    public static double min = 10;
+    public static long min = 10;
 
     static AccessibilityNodeInfo targetNode = null;
 
