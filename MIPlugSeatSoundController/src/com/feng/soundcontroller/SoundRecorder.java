@@ -91,6 +91,7 @@ public class SoundRecorder {
                         timer = new Timer();
                         timer.schedule(new MyTimerTask(), MyAccessibility.min
                                 * 60000);
+                        // timer.schedule(new MyTimerTask(), 6000);
                         Log.i(TAG, "new timer");
                     }
 
